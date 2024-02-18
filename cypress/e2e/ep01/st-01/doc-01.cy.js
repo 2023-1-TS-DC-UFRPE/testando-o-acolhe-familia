@@ -88,16 +88,7 @@ describe('DOC-01 Página inicial do sistema', () => {
   it('Login', () => {
     cy.visit('/')
 
-    // Auth Flow
-    // Entrar button
-    cy.contains("Entrar").click()
-    // Email input
-    cy.log("Realizando o login, por favor verifique se o usuário e senha estão configurados corretamente no arquivo cypress.env.json.")
-    cy.get('#email').type(Cypress.env('viewer_user_email'))
-    // Password input
-    cy.get('#password').type(Cypress.env('viewer_user_password'), { log: false })
-    // Login/Entrar button
-    cy.contains("Entrar").click()
+    cy.login(Cypress.env('viewer_user_email'), Cypress.env('viewer_user_password'))
 
     cy.url().should('include', '/dashboard')
 
