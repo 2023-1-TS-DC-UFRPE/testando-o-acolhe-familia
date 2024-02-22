@@ -28,18 +28,46 @@ describe('Visualizar dados completos de uma família', ()=>{
         //clica no botão de opções
         cy.get('family-actions-inline').first().within(()=>{cy.get('.mat-mdc-menu-trigger').click({force:true})})
 
-        // clica no botão visualizar
+        // clica no botão visualizar a família
         cy.get('#mat-menu-panel-4').within(()=>{
             cy.get('.mat-mdc-menu-item').first().click({force:true})
         })
 
-        const fields = ['zip-code', 'state', 'city', 'street', 'no-address', 'suas-form-field', 'suas-form-field-2']
-        
-        fields.forEach((f)=>{
+        cy.contains('A Moradia foi Atingida?')
 
-            cy.get('.family-form__'+f).within(()=>{
-                cy.get('.field-read-only__value').invoke('text').should('have.length.gt', 1)
-            })
+        cy.get('.family-form__zip-code').within(()=>{
+            cy.get('.field-read-only__value').invoke('text').should('have.length.gt', 1)
         })
+
+        cy.get('.family-form__state').within(()=>{
+            cy.get('.field-read-only__value').invoke('text').should('have.length.gt', 1)
+        })
+
+        cy.get('.family-form__city').within(()=>{
+            cy.get('.field-read-only__value').invoke('text').should('have.length.gt', 1)
+        })
+
+        cy.get('.family-form__street').within(()=>{
+            cy.get('.field-read-only__value').invoke('text').should('have.length.gt', 1)
+        })
+
+        cy.get('.family-form__no-address').within(()=>{
+            cy.get('.field-read-only__value').invoke('text').should('have.length.gt', 1)
+        })
+
+        cy.get('.family-form__suas-form-field').within(()=>{
+            cy.get('.field-read-only__value').invoke('text').should('have.length.gt', 1)
+        })
+
+        cy.get('.family-form__suas-form-field-2').within(()=>{
+            cy.get('.field-read-only__value').invoke('text').should('have.length.gt', 1)
+        })
+
+        cy.get('.family-form__number').within(()=>{
+            cy.get('.field-read-only__value').should('not.have.text', '-')
+        })
+
+        cy.contains('(Responsável pela unidade familiar)')
+    
     })
 })
