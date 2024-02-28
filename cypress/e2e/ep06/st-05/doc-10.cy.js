@@ -3,16 +3,16 @@ Cypress.Commands.add('clickItemNavigateAndVerifyFilter', (itemText) => {
     cy.contains(itemText).click()
 
     // Verificar se o filtro foi aplicado
-    cy.contains(itemText)
+    cy.get('.text-blue-700').should('contain', itemText)
 })
-describe('Dashboard (Painela de visualização): Campos do painel clicáveis em situação moradia ', ()=>{
+describe('DOC-10 Dashboard (Painela de visualização): Campos do painel clicáveis em situação moradia ', ()=>{
     it('Login & Teste de filtro encontrados no dashboard sobre Moradias', () => {
         // Acessar a plataforma
         cy.visit('/')
 
         cy.contains('Entrar')
 
-        cy.login(Cypress.env('email'), Cypress.env('password'))
+        cy.login(Cypress.env('viewer_user_email'), Cypress.env('viewer_user_password'))
 
         cy.url().should('include', '/dashboard')
 
