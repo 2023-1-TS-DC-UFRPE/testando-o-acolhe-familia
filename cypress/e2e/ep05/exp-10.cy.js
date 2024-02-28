@@ -1,23 +1,19 @@
+import general from "../../support/general"
+import voluntarios from "../../support/pages/voluntarios"
+import navigation from "../../support/util/navigation"
+
 describe('EXP-10 CPF Voluntario', () => {
   it('Teste de alteração de CPF voluntário', () => {
-    cy.visit('https://acolhe-disciplina.innovagovlab.org')
-    cy.login(Cypress.env('email'), Cypress.env('password'))
+    general.loginProcedure()
 
-    cy.url().should('include', '/dashboard')
+    navigation.toVolunteers()
+    voluntarios.clicarBotaoEditarPrimeiroVoluntario()
 
-    cy.getAllLocalStorage()
-        .its('https://acolhe-disciplina.innovagovlab.org')
-        .should('have.keys', ['accessToken'])
+    voluntarios.limpaEDigitaCPFEXistente()
 
-    cy.visit('/volunteers')
-    cy.get('.mdc-data-table__content').within(() => {
-      cy.get('.mat-mdc-button-persistent-ripple.mdc-icon-button__ripple').first().click({ force: true })})
+    voluntarios.clicaBotaoAtualizar()
 
-    cy.get('#cpf').clear().type("698.195.864-37")
-
-    cy.contains("Atualizar").click()
-
-    cy.contains("Erro ao atualizar.")
+    voluntarios.checaContemErroAtualizacao()
 
   })
  })

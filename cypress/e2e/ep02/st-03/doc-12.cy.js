@@ -1,28 +1,24 @@
+import general from "../../../support/general"
+import abrigo from "../../../support/pages/abrigo"
+import inicio from "../../../support/pages/inicio"
+import login from "../../../support/pages/login"
+import navigation from "../../../support/util/navigation"
+import url from "../../../support/util/url"
+
 describe('DOC-12 Falha na edição por campo obrigatório incorreto.', () => {
     it("Abrigos - Verificar mensagem de erro ao digitar um email inválido", () => {
-        // Acessar a plataforma
-        cy.visit('/')
 
-        cy.login(Cypress.env('email'), Cypress.env('password'))
-
-        cy.url().should('include', '/dashboard')
+        general.loginProcedure()
         
-        // Acessar a página de Abrigos --> Abrigo X - Nome_Representante
-        cy.visit('/shelters/3')
+        navigation.toShelter()
 
-        // Acessar a página de Informações
-        cy.get('.mdc-tab__text-label').contains("Informações").click({ force: true })
+        abrigo.acessarInformacoes()
 
-        // Clicar no botão de "Editar"
-        cy.get('.mdc-button__label').first().within(() => {
-            cy.contains("Editar").click()
-        })
+        abrigo.clicarBotaoEditar()
 
-        // Digitar um email inválido
-        cy.get('#email').clear().type('email-invalido@').blur();
+        abrigo.digitarEmailInvalidoEDesfocar()
 
-        // Verificar se uma mensagem de erro é exibida para o e-mail inválido
-        cy.get('.mat-mdc-form-field-error').should('exist').and('be.visible');
+        abrigo.verificaMostrouErroEmailInvalido()
         
     })
 })
