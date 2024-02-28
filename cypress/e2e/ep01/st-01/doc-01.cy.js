@@ -1,99 +1,55 @@
+import general from "../../../support/general"
+import abrigo from "../../../support/pages/abrigo"
+import contatosUteis from "../../../support/pages/contatos-uteis"
+import educacaoAmbiental from "../../../support/pages/educacao-ambiental"
+import inicio from "../../../support/pages/inicio"
+import login from "../../../support/pages/login"
+import sobre from "../../../support/pages/sobre"
+import navigation from "../../../support/util/navigation"
+import url from "../../../support/util/url"
+
 describe('DOC-01 Página inicial do sistema', () => {
   it("Página Inicial", () => {
-    cy.visit('/')
-    
-    // Verifica se o título da página é o esperado
-    cy.title().should('eq', 'Acolhe')
-    // Verifica se o texto "Acolhe" está presente na página
-    cy.contains('ACOLHE')
-    // Verifica se o texto "Entrar" está presente na página
-    cy.contains('Entrar')
-    // Verifica se o texto "Saiba mais" está presente na página
-    cy.contains("Saiba mais")
-
-    // Verifica se contém a definição do Acolhe
-    cy.contains("sistema de apoio ao acolhimento do cidadão em áreas de risco em situações de emergências")
-
-    // Verifica se os parceiros são citados
-    cy.contains('InnovaGovLab')
-    cy.contains('UFRPE')
-    cy.contains('FACEPE')
-    cy.contains('SECTI-PE')
-    cy.contains("Defesa Civil-PE")
-    cy.contains('SEAS-Olinda')
-    cy.contains('CUFA-PE')
+    navigation.toInicio()
+    inicio.checaConteudo()
   })
 
   it("Contatos úteis", () => {
-    cy.visit('/')
+    navigation.toInicio()
 
-    // Clica no link de contatos úteis
-    cy.get('.fuse-vertical-navigation-content').within(() => {
-      cy.contains("Contatos úteis").click()
-    })
-    cy.url().should('include', '/contatos-uteis')
+    inicio.clicaContatosUteis()
 
-    // Verifica se os contatos úteis estão presentes
-    cy.contains("Defesa Civil de Pernambuco")
-    cy.contains("Secretaria de Desenvolvimento Social e Direitos Humanos de Olinda/PE")
+    url.estaEmContatosUteis()
+
+    contatosUteis.checaContatosUteisPresentes()
   })
 
   it("Abrigos", () => {
-    cy.visit('/')
+    navigation.toInicio()
 
-    // Clica no link de abrigos
-    cy.get('.fuse-vertical-navigation-content').within(() => {
-      cy.contains("Abrigos").click()
-    })
-    cy.url().should('include', '/abrigos')
-    cy.contains("Abrigos")
+    inicio.clicaAbrigos()
+    url.estaEmAbrigos()
+    abrigo.checaConteudo()
 
-    // Verifica se tem no mínimo 3 abrigos
-    cy.get('.shelters').within(() => {
-      cy.get('.card').should('have.length.be.gte', 3)
-    })
+    abrigo.verificaTabelaMin3Abrigos()
   })
 
   it("Educação Ambiental", () => {
-    cy.visit('/')
+    navigation.toInicio()
 
-    // Clica no link de educação ambiental
-    cy.get('.fuse-vertical-navigation-content').within(() => {
-      cy.contains("Educação Ambiental").click()
-    })
-    cy.url().should('include', '/educacao-ambiental')
-    cy.contains("Educação Ambiental")
+    inicio.clicaEducacaoAmbiental()
+    url.estaEducacaoAmbiental()
+    educacaoAmbiental.checaConteudo()
   })
 
   it("Sobre", () => {
-    cy.visit('/')
-
-    // Clica no link de sobre
-    cy.get('.fuse-vertical-navigation-content').within(() => {
-      cy.contains("Sobre").click()
-    })
-    cy.url().should('include', '/sobre')
-    cy.contains("Sobre")
-
-    // Verifica se os parceiros são citados
-    cy.contains('InnovaGovLab')
-    cy.contains('UFRPE')
-    cy.contains('FACEPE')
-    cy.contains('SECTI-PE')
-    cy.contains("Defesa Civil-PE")
-    cy.contains('SEAS-Olinda')
-    cy.contains('CUFA-PE')
+    navigation.toInicio()
+    inicio.clicaSobre()
+    url.estaEmSobre()
+    sobre.checaConteudo()
   })
 
   it('Login', () => {
-    cy.visit('/')
-
-    cy.login(Cypress.env('viewer_user_email'), Cypress.env('viewer_user_password'))
-
-    cy.url().should('include', '/dashboard')
-
-    cy.getAllLocalStorage()
-      .its('https://acolhe-disciplina.innovagovlab.org')
-      .should('have.keys', ['accessToken'])
+    general.loginProcedure()
   })
 })
