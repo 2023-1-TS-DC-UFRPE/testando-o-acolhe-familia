@@ -20,6 +20,11 @@ class AcolhidosFiltros {
     pesquisarPessoa() {
         elements.caixaPesquisa.type("Eliomar")
     }
+
+    clicarfiltroAcolhidosOpcaoX(x) {
+        elements.filtroAcolhidosOpcaoX(x).click()
+    }
+
 }
 
 export default new AcolhidosFiltros()

@@ -16,6 +16,10 @@ class Elements {
         return cy.get("mat-radio-group").children().eq(3).find("mat-radio-button").should("be.visible")
     }
 
+    filtroAcolhidosOpcaoX(opcao) {
+        return cy.get("mat-radio-group").children().eq(opcao).find("mat-radio-button").should("be.visible")
+    }
+
     get caixaPesquisa() {
         return cy.get("input[placeholder='Buscar pessoa']")
     }
