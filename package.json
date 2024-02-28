@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/2023-1-TS-DC-UFRPE/testando-o-acolhe-familia#readme",
   "dependencies": {
+    "@cypress-audit/lighthouse": "^1.4.2",
+    "@cypress-audit/pa11y": "^1.4.2",
     "cypress": "^13.6.4"
   }
 }
