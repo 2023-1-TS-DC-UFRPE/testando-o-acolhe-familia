@@ -7,6 +7,10 @@ class navigation {
         cy.visit('/volunteers')
     }
 
+    toAcolhidos() {
+        cy.visit('/people-sheltered')
+    }
+
     toInicio() {
         cy.visit('/')
     }
