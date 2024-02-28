@@ -12,7 +12,7 @@ describe('DOC-09 Dashboard (Painel de visualização): Campos do painel clicáve
 
         cy.contains('Entrar')
 
-        cy.login(Cypress.env('email'), Cypress.env('password'))
+        cy.login(Cypress.env('viewer_user_email'), Cypress.env('viewer_user_password'))
 
         cy.url().should('include', '/dashboard')
 
