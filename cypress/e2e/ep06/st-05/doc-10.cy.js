@@ -4,7 +4,7 @@ import navigation from "../../../support/util/navigation"
 import url from "../../../support/util/url"
 
 Cypress.Commands.add('clickItemNavigateAndVerifyFilter', (itemText) => {
-    dashboard.clicaItemFiltro('Parcialmente inábitavel')
+    dashboard.clicaItemFiltro(itemText)
     url.estaEmAbrigados()
     navigation.toDashboard()
 })
