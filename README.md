@@ -26,3 +26,8 @@ If you need any more help, please look at [Environment Variables | Cypress Docum
 Planilha que usamos para acompanhar e gerenciar os testes
 
 https://docs.google.com/spreadsheets/d/1T8VPCdcnj_JbL6oeBrt4wiTKUv25trQA1FlY_ETLEfI/edit?usp=sharing
+
+
+## Presentation Video
+
+https://drive.google.com/file/d/1AwzYDZej8WhqZ3s9h02oDh84FHgHApOz/view
