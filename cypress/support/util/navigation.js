@@ -14,6 +14,9 @@ class navigation {
     toInicio() {
         cy.visit('/')
     }
+    toDashboard() {
+        cy.visit('/dashboard')
+    }
 }
 
 export default new navigation()

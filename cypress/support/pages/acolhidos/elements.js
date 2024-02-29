@@ -107,6 +107,10 @@ class Elements {
         return cy.contains('button', '2002');     
     }
 
+    get textoFiltro() {
+        return cy.get('.text-blue-700')
+    }
+
 }
 
 export default new Elements()

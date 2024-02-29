@@ -24,6 +24,8 @@ class abrigo {
     verificaTabelaMin3Abrigos() {
         elements.tabelaAbrigos.should('have.length.be.gte', 3)
     }
+
+    
 }
 
 export default new abrigo()

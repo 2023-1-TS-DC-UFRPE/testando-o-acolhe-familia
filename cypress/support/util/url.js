@@ -12,7 +12,7 @@ class url {
     }
 
     estaEmAbrigos() {
-        cy.url().should('include', '/abrigos')
+        cy.url().should('include', '/shelters')
     }
 
     estaEducacaoAmbiental() {
@@ -21,6 +21,10 @@ class url {
 
     estaEmSobre() {
         cy.url().should('include', '/sobre')
+    }
+
+    estaEmAbrigados() {
+        cy.url().should('include', '/people-sheltered')
     }
 }
 

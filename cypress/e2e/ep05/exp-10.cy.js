@@ -14,6 +14,6 @@ describe('EXP-10 CPF Voluntario', () => {
     voluntarios.clicaBotaoAtualizar()
 
     voluntarios.checaContemErroAtualizacao()
-
+    
   })
  })

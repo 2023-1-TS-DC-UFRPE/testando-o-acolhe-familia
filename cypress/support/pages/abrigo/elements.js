@@ -18,6 +18,10 @@ class elements {
     get tabelaAbrigos() {
         return cy.get('.shelters').find('.card')
     }
+
+    itemFilterDashboard(itemText) {
+        return cy.contains(itemText)
+    }
 }
 
 export default new elements()

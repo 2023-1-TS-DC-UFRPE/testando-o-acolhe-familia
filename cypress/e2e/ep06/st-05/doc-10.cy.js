@@ -1,39 +1,25 @@
-Cypress.Commands.add('clickItemNavigateAndVerifyFilter', (itemText) => {
-    // Clicar no item
-    cy.contains(itemText).click()
+import general from "../../../support/general"
+import dashboard from "../../../support/pages/dashboard"
+import navigation from "../../../support/util/navigation"
+import url from "../../../support/util/url"
 
-    // Verificar se o filtro foi aplicado
-    cy.get('.text-blue-700').should('contain', itemText)
+Cypress.Commands.add('clickItemNavigateAndVerifyFilter', (itemText) => {
+    dashboard.clicaItemFiltro('Parcialmente inábitavel')
+    url.estaEmAbrigados()
+    navigation.toDashboard()
 })
 describe('DOC-10 Dashboard (Painela de visualização): Campos do painel clicáveis em situação moradia ', ()=>{
     it('Login & Teste de filtro encontrados no dashboard sobre Moradias', () => {
         // Acessar a plataforma
-        cy.visit('/')
-
-        cy.contains('Entrar')
-
-        cy.login(Cypress.env('viewer_user_email'), Cypress.env('viewer_user_password'))
-
-        cy.url().should('include', '/dashboard')
-
-        cy.getAllLocalStorage()
-            .its('https://acolhe-disciplina.innovagovlab.org')
-            .should('have.keys', ['accessToken'])
+        general.loginProcedure()
 
         // Clicar no item e verificar se o filtro foi aplicado
+
         cy.clickItemNavigateAndVerifyFilter('Parcialmente inábitavel')
-
-        // Navegar para a página anterior
-        cy.go('back')
-
         cy.clickItemNavigateAndVerifyFilter('Completamente inábitavel')
-
-        cy.go('back')
-
         cy.clickItemNavigateAndVerifyFilter('Habitável, mas precisa de reparos')
 
-        cy.go('back')
 
-        cy.clickItemNavigateAndVerifyFilter('Habitável e não precisa de reparos')
+
     })
 })

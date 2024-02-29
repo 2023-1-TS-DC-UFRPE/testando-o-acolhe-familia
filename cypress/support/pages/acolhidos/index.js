@@ -110,6 +110,10 @@ class AcolhidosFiltros {
         elements.selecionarDia.click();
     }
 
+    verificaFiltroAplicado(itemText) {
+        elements.textoFiltro.should('contain', itemText)
+    }
+
 }
 
 
